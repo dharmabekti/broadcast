@@ -92,3 +92,6 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+// Custom Define
+define('API_KEY', "b75144f0ec3f6766ea0fbfbc8b874e1a54fa55593ab4d508b2a80f11b4cf142e");

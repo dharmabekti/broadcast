@@ -7,6 +7,7 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use GuzzleHttp\Client;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -54,5 +55,68 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+    }
+
+    protected function sendNotif($whatsapp, $msg)
+    {
+        try {
+            $data = array(
+                'phone' => $whatsapp,
+                'messageType' => 'text',
+                'body' => $msg,
+            );
+
+            $url = 'https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp';
+            $client = new Client();
+            $response = $client->post($url, [
+                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'API-Key' => API_KEY],
+                'body' => json_encode($data),
+            ]);
+
+            $resSender = json_decode($response->getBody());
+            $resStatus = $this->getStatusMessage($resSender->data->id);
+            return json_encode($resStatus);
+        } catch (Exception $e) {
+            $this->response([
+                'status' => false,
+                'message' => 'Terjadi kesalahan',
+            ], self::HTTP_INTERNAL_ERROR);
+        }
+    }
+
+    protected function getStatusMessage($id)
+    {
+        try {
+            $data = ['id' => $id];
+
+            $url = 'https://sendtalk-api.taptalk.io/api/v1/message/get_status';
+            $client = new Client();
+            $response = $client->post($url, [
+                'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'API-Key' => API_KEY],
+                'body' => json_encode($data),
+            ]);
+
+            $res = json_decode($response->getBody());
+            $msg = "Successfully sent message";
+            $type = "success";
+            if ($res->data->status == 'acknowledged') {
+                $msg = "WhatsApp number is unknown!";
+                $type = "error";
+            }
+
+            return [
+                'id' => $id,
+                'status_code' => $res->status,
+                'status_label' => $res->data->status,
+                'status_message' => $msg,
+                'type' => $type,
+            ];
+
+        } catch (Exception $e) {
+            $this->response([
+                'status' => false,
+                'message' => 'Terjadi kesalahan',
+            ], self::HTTP_INTERNAL_ERROR);
+        }
     }
 }
