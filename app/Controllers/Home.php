@@ -2,16 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\MessageModel;
 use App\Models\RecipientModel;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class Home extends BaseController
 {
-    private $recipientM;
+    private $recipientM, $msgM;
     public function __construct()
     {
         $this->recipientM = new RecipientModel();
+        $this->msgM = new MessageModel();
     }
 
     public function index()
@@ -20,11 +22,10 @@ class Home extends BaseController
             'title' => "Recipients",
             'recipients' => $this->recipientM->getData(),
         ];
-        // dd($this->recipientM->getData());
         return view('recipients/index', $data);
     }
 
-    public function saveResipient()
+    public function saveRecipient()
     {
         $id = $this->request->getVar('id');
         if ($this->recipientM->save([
@@ -46,7 +47,7 @@ class Home extends BaseController
         ]);
     }
 
-    public function importResipient()
+    public function importRecipient()
     {
         $file = $this->request->getFile("file");
         $ext = $file->getExtension();
@@ -63,8 +64,8 @@ class Home extends BaseController
             if ($value[1] != "" && $value[2] != "" && $value[3] != "") {
                 $this->recipientM->save([
                     'name' => $value[1],
-                    'number' => (string) $value[2],
-                    'country_code' => (string) $value[3],
+                    'country_code' => (string) $value[2],
+                    'number' => (string) $value[3],
                 ]);
             }
         }
@@ -75,7 +76,7 @@ class Home extends BaseController
         ]);
     }
 
-    public function deleteResipient($id)
+    public function deleteRecipient($id)
     {
         if ($this->recipientM->delete($id)) {
             return json_encode([
@@ -95,6 +96,8 @@ class Home extends BaseController
     {
         $id = $this->request->getVar('id');
         $resipient = $this->recipientM->getData($id);
+        $getMsg = $this->msgM->getDataActive();
+
         $msg = "Jaya {$resipient->name}";
         $res = $this->sendNotif($resipient->country_code . $resipient->number, $msg);
         return $res;

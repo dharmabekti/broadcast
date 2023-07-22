@@ -6,7 +6,6 @@ use CodeIgniter\Model;
 
 class RecipientModel extends Model
 {
-    // Nama Tabel
     protected $table = 'recipients';
     protected $allowedFields = ['name', 'number', 'country_code'];
     protected $returnType = 'object';

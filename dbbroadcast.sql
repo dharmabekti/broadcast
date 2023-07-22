@@ -22,13 +22,17 @@ DROP TABLE IF EXISTS `messages`;
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `greeting` varchar(100) NOT NULL,
   `message` text NOT NULL,
-  `closing` varchar(100) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `messages` */
+
+insert  into `messages`(`id`,`message`,`status`) values 
+(1,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',1),
+(5,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',0),
+(6,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',0);
 
 /*Table structure for table `recipients` */
 

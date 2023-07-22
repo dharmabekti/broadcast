@@ -30,10 +30,15 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->post('/', 'Home::saveResipient');
-$routes->delete('/(:num)', 'Home::deleteResipient/$1');
-$routes->post('/import', 'Home::importResipient');
+$routes->post('/', 'Home::saveRecipient');
+$routes->delete('/(:num)', 'Home::deleteRecipient/$1');
+$routes->post('/import', 'Home::importRecipient');
 $routes->post('/send', 'Home::sendMessage');
+$routes->get('/msg', 'Message::index');
+$routes->get('/msg/(:num)', 'Message::detail/$1');
+$routes->post('/msg', 'Message::save');
+$routes->post('/msg/(:num)', 'Message::update/$1');
+$routes->delete('/msg/(:num)', 'Message::delete/$1');
 
 /*
  * --------------------------------------------------------------------
