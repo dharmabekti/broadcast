@@ -96,9 +96,11 @@ class Home extends BaseController
     {
         $id = $this->request->getVar('id');
         $resipient = $this->recipientM->getData($id);
-        $getMsg = $this->msgM->getDataActive();
-
-        $msg = "Jaya {$resipient->name}";
+        $getMsg = $this->msgM->getDataActive()->message;
+        $setName = str_replace("{{fullname}}", $resipient->name, $getMsg);
+        $msg = $setName;
+        // print_r(htmlspecialchars($getMsg));
+        // die;
         $res = $this->sendNotif($resipient->country_code . $resipient->number, $msg);
         return $res;
     }

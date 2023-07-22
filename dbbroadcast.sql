@@ -25,14 +25,14 @@ CREATE TABLE `messages` (
   `message` text NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `messages` */
 
 insert  into `messages`(`id`,`message`,`status`) values 
-(1,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',1),
-(5,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',0),
-(6,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',0);
+(1,'Hi, *{{fullname}}*\n\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di *siuajy.com*. Kunjungi juga Website resmi kami *fti.uajy.ac.id/sisteminformasi*, dan akun instagram *@si_uajy* untuk update kegiatan menarik lainya!\n\n_Pesan berikut digenerate oleh sistem_',1),
+(2,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',0),
+(3,'Hi, {{fullname}}.\nSelamat datang di Program Studi Sistem Informasi UAJY. Terimakasih telah mempercayakan Prodi SI UAJY sebagai tempat kuliah Anda. Untuk mengetahui lebih dalam Prodi SI, silahkan kunjungi Kampus Virtual SI di siuajy.com. Kunjungi juga Website resmi kami fti.uajy.ac.id/sisteminformasi, dan akun instagram @si_uajy untuk update kegiatan menarik lainya!',0);
 
 /*Table structure for table `recipients` */
 
@@ -44,13 +44,14 @@ CREATE TABLE `recipients` (
   `number` varchar(20) NOT NULL,
   `country_code` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `recipients` */
 
 insert  into `recipients`(`id`,`name`,`number`,`country_code`) values 
 (1,'Anom Suroto','85728418120',62),
-(2,'Bekti Suratmanto','81326662126',62);
+(2,'Bekti Suratmanto','81326662126',62),
+(3,'Julius Galih Prima Negara','82299300602',62);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
